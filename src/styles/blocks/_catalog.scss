@@ -1,44 +1,20 @@
 .catalog {
-  $root: &;
   display: grid;
-  justify-content: center;
-  // grid-template-columns: repeat(4, 200px);
-  // grid-template-rows: repeat(2, auto);
   gap: 48px;
-  margin-bottom: 20px;
 
-
-  // max-width: 944px;
+  @each $number-of-cards, $value in $screen-width {
+    @media (min-width: #{$value}) {
+      grid-template-columns: repeat($number-of-cards, $card-width);
+    }
+  }
 
   &__card {
     display: grid;
     justify-items: center;
-    align-items: center;
     width: 200px;
     height: 300px;
-    border: 1px solid #ccc;
+
+    border: 1px solid $c-card-border;
     border-radius: 5px;
-  }
-
-  // &__card:not(:nth-child(4n)) {
-  //   margin-bottom: 48px;
-  // }
-}
-
-@media (min-width: 488px) {
-  .catalog {
-    grid-template-columns: repeat(2, 200px);
-  }
-}
-
-@media (min-width: 768px) {
-  .catalog {
-    grid-template-columns: repeat(3, 200px);
-  }
-}
-
-@media (min-width: 1024px) {
-  .catalog {
-    grid-template-columns: repeat(4, 200px);
   }
 }
